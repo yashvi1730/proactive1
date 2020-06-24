@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/schedule.css'%}">
+</head>
+<body style="background-color: cyan;">
+    <div class="container" id="cont">
+        <div class="row" style="background-color: blue;">
+            <img style="margin-left: 400px;" src="https://lh3.googleusercontent.com/proxy/vS8-bYv_KPjow0yqkODzAb37wWWXkrIpwD4iXW7EYRbn5JZFvdo31ojEP_7bITTOcthoTrvPGMumhLXvNXd6RvLaQ4SCOEv8KPDttwxADMHzgZcZTxUjcHLYrIa5ra7ugVHk39AzR0oDVkD3-ahFWHxB2ucZaEd0vBk"></img>
+        </div>
+
+        <h1 style="color: blue;margin-left: 420px;">SUCCESS!</h1>
+        <h2 style="margin-left: 200px;">Appointment Booked for {{appoint.date}},{{appoint.time}}</h2>
+        <br/>
+        <div class="row" style="margin-left: 200px;"><a href="{% url 'homepage' %}"><u>Return to Home Page</u></a></div>
+        <br/>
+        <div class="row" style="margin-left: 200px;"><a href=""><u>Get Appointment on email</u></a></div>
+        <br/>
+        <div class="row" style="margin-left: 200px;"><a href=""><u>Get Appointment on SMS</u></a></div>
+        <br/>
+        <div class="row" style="margin-left: 200px;"><a href=""><u>View Appointment in My Account</u></a></div>
+        <br/>
+
+
+
+    </div>
+</body>
+</html>

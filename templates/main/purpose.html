@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/purpose.css'%}">
+    <style type="text/css">
+        
+        .progressbar{
+          counter-reset:step;
+        }
+
+        .progressbar li{
+          list-style-type:none;
+          float:left;
+          width:16.66%;
+          position:relative;
+          text-align: center;
+         }
+        .progressbar li:before{
+          content:counter(step);
+          counter-increment:step;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          border: 1px solid #ddd;
+          display: block;
+          text-align: center;
+          margin:0 auto 10px auto;
+          border-radius: 50%;
+          
+        }
+
+        .progressbar li:after {
+          content:'';
+          position: absolute;
+          width:100%;
+          height: 1px;
+          background-color: #ddd;
+          top: 15px;
+          left: -50%;
+        }
+
+        .progressbar li:first-child:after{
+          content: none;
+        }
+
+        .progressbar li.active{
+          color: green;
+        }
+
+        .progressbar li.active:before{
+          border-color: green;
+          
+        }
+
+        .progressbar li.active + li:after{
+          background-color: green;
+        }
+
+
+    </style>
+</head>
+<body style="background-color:cyan">
+    <div class="container" align="left" style="background-color: white">
+        <ul class="progressbar">
+            <li class="active"><b>Personal Information</b></li>
+            <li class="active"><b>PCOS History</b></li>
+            <li class="active"><b>Medical History</b></li>
+            <li class="active"><b>Menstrual History</b></li>
+            <li class="active"><b>Purpose of call</b></li>
+            <li><b>Schedule Call</b></li>
+    
+          </ul>
+          <br/>
+          <br/>
+          <br/>
+        <form method="POST">
+            {% csrf_token %}
+            
+
+            <h1 style=" margin-left:400px">Purpose of Visit</h1>
+            <div class="row">
+                <p style=" margin-left:40px">Fill in the below information to help the doctor understand your concerns</p>
+            </div>
+            <br/>
+
+            <div class="row" style="margin-bottom: -20px;">
+                <p style=" margin-left:40px">What is the purpose of Scheduling the appointment with the doctor</p>
+
+            </div>
+            
+            <div class="row" style="margin-bottom: -30px;">
+                <div class="col-md-1" style="margin:auto">
+                    <input type="radio"  id="purpose" name="purpose" value="Current Treatment does not seem effective" ></input>
+                </div>
+                <div class="col-md-11" style="margin:auto">
+                <label for="purpose" > Current Treatment does not seem effective</label>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: -30px;">
+                <div class="col-md-1" style="margin:auto">
+                    <input type="radio" id="purpose" name="purpose" value=" Want to change the current treatment" ></input>
+                </div>
+                <div class="col-md-11" style="margin:auto">
+               <label for="purpose" > Want to change the current treatment </label>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: -30px;">
+                <div class="col-md-1" style="margin:auto">
+                    <input type="radio" id="purpose" name="purpose" value="Symptoms have worsened"></input>
+                </div>
+                <div class="col-md-11" style="margin:auto">
+                <label for="purpose"> Symptoms have worsened</label>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: -30px;">
+                <div class="col-md-1"  style="margin:auto">
+                    <input type="radio" id="purpose" name="purpose" value="New Symptoms have emerged related to PCOS" ></input>
+                </div>
+                <div class="col-md-11" style="margin:auto">
+                 <label for="purpose" > New Symptoms have emerged related to PCOS</label>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: -30px;">
+                <div class="col-md-1" style="margin:auto">
+                    <input type="radio" id="purpose" name="purpose" value="Need Second opinion"></input>
+                </div>
+                <div class="col-md-11" style="margin:auto">
+                 <label for="purpose" > Need Second opinion</label>
+              </div>
+            </div>
+            <hr/>
+
+
+             <br/>
+
+            <div class="row" style="margin-left: 15px;">
+                <div class="col-md-4">
+                     <label for="add_reason"> Please elaborate or provide additional details for reason of visit</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="add_reason" name="add_reason" placeholder="Any additional reason" required style="height:120px"></input>
+                </div>
+              </div>
+              <hr/>
+
+              <br/>
+              <div class="row">
+                <p style=" margin-left:40px">Upload any reports/related documents</p>
+              </div>
+
+              <div class="row" style="margin-left: 15px;">
+                <div class="col-md-4">
+                     <label for="docfile">Choose File</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="file" id="docfile" name="docfile"  style="height:120px"></input>
+                </div>
+              </div>
+             
+            <br/>
+
+              <div class="row">
+                <input style="background-color: blue;" type="submit" value="Continue">
+            </div>
+            
+
+        </form>
+    </div>
+    
+</body>
+</html>
+

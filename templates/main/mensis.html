@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/menstrual.css'%}">
+    <style type="text/css">
+        
+      .progressbar{
+        counter-reset:step;
+      }
+
+      .progressbar li{
+        list-style-type:none;
+        float:left;
+        width:16.66%;
+        position:relative;
+        text-align: center;
+       }
+      .progressbar li:before{
+        content:counter(step);
+        counter-increment:step;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #ddd;
+        display: block;
+        text-align: center;
+        margin:0 auto 10px auto;
+        border-radius: 50%;
+        
+      }
+
+      .progressbar li:after {
+        content:'';
+        position: absolute;
+        width:100%;
+        height: 1px;
+        background-color: #ddd;
+        top: 15px;
+        left: -50%;
+      }
+
+      .progressbar li:first-child:after{
+        content: none;
+      }
+
+      .progressbar li.active{
+        color: green;
+      }
+
+      .progressbar li.active:before{
+        border-color: green;
+        
+      }
+
+      .progressbar li.active + li:after{
+        background-color: green;
+      }
+
+
+  </style>
+</head>
+<body  style="background-color:cyan">
+    <div class="container" style="background-color: white">
+
+      <ul class="progressbar">
+        <li class="active"><b>Personal Information</b></li>
+        <li class="active"><b>PCOS History</b></li>
+        <li class="active"><b>Medical History</b></li>
+        <li class="active"><b>Menstrual History</b></li>
+        <li><b>Purpose of call</b></li>
+        <li><b>Schedule Call</b></li>
+
+      </ul>
+      <br/>
+      <br/>
+      <br/>
+        <form method="POST">
+            {% csrf_token %}
+
+            <h1 style=" margin-left:400px">Menstrual History</h1>
+
+            <div class="row">
+                <p style=" margin-left:230px">Help the doctor get a picture of your menstrual health.Please provide a rough estimate incase not sure</p>
+            </div>
+            <br/>
+
+            <h3 style=" margin-left:400px">Basic Period Information</h3>
+
+            <div class="row" style="margin-left:200px ">
+                <div class="col-md-5">
+                  <label for="m_age_first_period"> Age at which you had your first period</label>
+                </div>
+                <div class="col-md-7">
+                  <input type="number" id="m_age_first_period" name="m_age_first_period" placeholder="Your age.." required style="width:300px">
+                </div>
+              </div>
+
+              <div class="row" style="margin-left:200px">
+                <div class="col-md-5">
+                  <label for="m_date_last_period"> When did you get your last period(mention date)</label>
+                </div>
+                <div class="col-md-7">
+                  <input type="date" id="m_date_last_period" name="m_date_last_period"  required style="width:300px">
+                </div>
+              </div>
+
+              <div class="row" style="margin-left:200px">
+                <div class="col-md-5">
+                  <label for="m_cycle_len">Cycle Length(Typical timespan between two periods)</label>
+                </div>
+                <div class="col-md-7">
+                  <input type="number" id="m_cycle_len" name="m_cycle_len"  required style="width:300px">
+                </div>
+              </div>
+
+              <div class="row" style="margin-left:200px">
+                <div class="col-md-5">
+                  <label for="m_period_len"> Period Length(No. of days your periods last)</label>
+                </div>
+                <div class="col-md-7">
+                  <input type="number" id="m_period_len" name="m_period_len"  required style="width:300px">
+                </div>
+              </div>
+              <br/>
+              <hr/>
+              <br/>
+
+              <h3 style=" margin-left:400px">Additional Information</h3>
+
+              <br/>
+
+                  
+            <div class="row">
+                <p style=" margin-left:230px">Amount of flow:(heavy flow is bleeding with clots or soaking 16 full size pads/tampons in an entire period)</p>
+            </div>
+
+            <div class="row" style="margin-left: 200px;margin-bottom: -30px;">
+                <div class="col-md-1" style="margin:auto">
+                    <input type="radio"  id="m_flow_amount" name="m_flow_amount" value="Heavy" ></input>
+                </div>
+                <div class="col-md-11" style="margin:auto">
+                <label for="m_flow_amount" > Heavy</label>
+              </div>
+            </div>
+
+            <div class="row" style="margin-left: 200px;margin-bottom: -30px;">
+                <div class="col-md-1" style="margin:auto">
+                    <input type="radio"  id="m_flow_amount" name="m_flow_amount" value="Medium" ></input>
+                </div>
+                <div class="col-md-11" style="margin:auto">
+                <label for="m_flow_amount" >Medium</label>
+              </div>
+            </div>
+
+            <div class="row" style="margin-left: 200px;">
+                <div class="col-md-1" style="margin:auto">
+                    <input type="radio"  id="m_flow_amount" name="m_flow_amount" value="Low" ></input>
+                </div>
+                <div class="col-md-11" style="margin:auto">
+                <label for="m_flow_amount" >Low</label>
+              </div>
+            </div>
+
+            <br/>
+            <div class="row" >
+                <p style=" margin-left:230px">Associated pain with period</p>
+            </div>
+
+            <div class="row" style="margin-left: 200px;margin-bottom: -20px;">
+                <div class="col-md-6">
+                    <p>Very Little</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p>Extreme pain</p>
+                </div>
+            </div>
+
+            <div class="row" style="margin-left: 300px;">
+                <p style=" margin-left:60px" >1</p>
+                <p style=" margin-left:60px">2</p>
+                <p style=" margin-left:60px">3</p>
+                <p style=" margin-left:60px">4</p>
+                <p style=" margin-left:60px">5</p>
+            </div>
+            
+            <div class="row" style="margin-left: 335px;">
+                <div class="col-md-1">
+                     <input type="radio"  id="m_pain_scale" name="m_pain_scale" value="Very Little" ></input>
+                </div>
+
+                <div class="col-md-1">
+                    <input type="radio"  id="m_pain_scale" name="m_pain_scale" value="Little" ></input>
+               </div>
+
+               
+               <div class="col-md-1" style="margin-left:2px;">
+                <input type="radio"  id="m_pain_scale" name="m_pain_scale" value="Medium" ></input>
+              </div>
+
+               <div class="col-md-1"  style="margin-left:2px;">
+                <input type="radio"  id="m_pain_scale" name="m_pain_scale" value="Much" ></input>
+               </div>
+
+               <div class="col-md-1" style="margin-left:5px;">
+                <input type="radio"  id="m_pain_scale" name="m_pain_scale" value="Extreme" ></input>
+               </div>
+
+            </div>
+
+            <br/>
+            <br/>
+
+            <div class="row">
+              <p style=" margin-left:230px">Intermenstrual bleeding/spotting:</p>
+          </div>
+
+          <div class="row" style="margin-left: 200px;margin-bottom: -30px;">
+              <div class="col-md-1" style="margin:auto">
+                  <input type="radio"  id="m_bleed" name="m_bleed" value="yes" ></input>
+              </div>
+              <div class="col-md-11" style="margin:auto">
+              <label for="m_bleed" > Yes</label>
+            </div>
+          </div>
+
+          <div class="row" style="margin-left: 200px;margin-bottom: -30px;">
+              <div class="col-md-1" style="margin:auto">
+                  <input type="radio"  id="m_bleed" name="m_bleed" value="no" ></input>
+              </div>
+              <div class="col-md-11" style="margin:auto">
+              <label for="m_bleed" >No</label>
+            </div>
+          </div>
+
+
+            
+            
+            <div class="row">
+                <input style="background-color: blue;" type="submit" value="Continue">
+            </div>
+
+
+
+
+        </form>
+    </div>
+
+    
+</body>
+</html>
+

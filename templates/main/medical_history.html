@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/medical_history.css'%}">
+    <style type="text/css">
+        
+        .progressbar{
+          counter-reset:step;
+        }
+
+        .progressbar li{
+          list-style-type:none;
+          float:left;
+          width:16.66%;
+          position:relative;
+          text-align: center;
+         }
+        .progressbar li:before{
+          content:counter(step);
+          counter-increment:step;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          border: 1px solid #ddd;
+          display: block;
+          text-align: center;
+          margin:0 auto 10px auto;
+          border-radius: 50%;
+          
+        }
+
+        .progressbar li:after {
+          content:'';
+          position: absolute;
+          width:100%;
+          height: 1px;
+          background-color: #ddd;
+          top: 15px;
+          left: -50%;
+        }
+
+        .progressbar li:first-child:after{
+          content: none;
+        }
+
+        .progressbar li.active{
+          color: green;
+        }
+
+        .progressbar li.active:before{
+          border-color: green;
+          
+        }
+
+        .progressbar li.active + li:after{
+          background-color: green;
+        }
+
+
+    </style>
+</head>
+<body  style="background-color:cyan">
+    <div class="container" align="left" id="cont" >
+        <ul class="progressbar">
+            <li class="active"><b>Personal Information</b></li>
+            <li class="active"><b>PCOS History</b></li>
+            <li class="active"><b>Medical History</b></li>
+            <li><b>Menstrual History</b></li>
+            <li><b>Purpose of call</b></li>
+            <li><b>Schedule Call</b></li>
+    
+          </ul>
+          <br/>
+          <br/>
+          <br/>
+        <form method="POST">
+            {% csrf_token %}
+            <h1 style=" margin-left:400px">Medical History</h1>
+
+        <br/>
+
+        <div class="row">
+          <div class="col-md-4">
+            <label for="pcos_medication"> List down the medications you are on for PCOS</label>
+          </div>
+          <div class="col-md-8">
+          <input type="text" id="pcos_medication" name="pcos_medication" placeholder="PCOS Medication" required style="height:120px"></input>
+        </div>
+        </div>
+
+        <br/>
+        <hr/>
+        <br/>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label for="other_medication"> List down any other medication you are on</label>
+            </div>
+            <div class="col-md-8">
+                <input type="text" id="other_medication" name="other_medication" placeholder="Other Medication" required style="height:120px"></input>
+          </div>
+        </div>
+
+        <br/>
+        <hr/>
+        <br/>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label for="allergies"> List down your allergies </label>
+            </div>
+            <div class="col-md-8">
+                <input type="text" id="allergies" name="allergies" placeholder="Allergies" required style="height:120px"></input>
+          </div>
+          </div>
+
+          <br/>       
+
+        <div class="row">
+            <input style="background-color: blue;" type="submit" value="Continue">
+        </div>
+        </form>
+    </div>
+    
+</body>
+</html>
