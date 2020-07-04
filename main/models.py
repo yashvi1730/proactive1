@@ -3,12 +3,13 @@ from django.db import models
 
 class Patient(models.Model):
     name=models.CharField(max_length=100)
-    age=models.IntegerField()
+    age=models.CharField(max_length=5)
     city=models.CharField(max_length=100)
-    number=models.IntegerField()
+    number=models.CharField(max_length=15)
     email=models.EmailField()
-    weight=models.IntegerField()
-    height=models.DecimalField(max_digits=5, decimal_places=2)
+    weight=models.CharField(max_length=5)
+    height_feet=models.CharField(max_length=5,default='none')
+    height_inches=models.CharField(max_length=5,default='none')
 
 class Medical_History(models.Model):
     pcos_medication=models.CharField(max_length=1000)
@@ -57,10 +58,10 @@ class Test(models.Model):
 
 
 class Mensis(models.Model):
-    m_age_first_period=models.IntegerField()
+    m_age_first_period=models.CharField(max_length=5,blank=True,null=True,default='none')
     m_date_last_period=models.DateField()
-    m_cycle_len=models.IntegerField()
-    m_period_len=models.IntegerField()
+    m_cycle_len=models.CharField(max_length=5,blank=True,null=True,default='none')
+    m_period_len=models.CharField(max_length=5,blank=True,null=True,default='none')
     m_flow_amount=models.CharField(max_length=100,default='Medium')
     m_pain_scale=models.CharField(max_length=100,default='Medium')
     m_bleed=models.CharField(max_length=100,default='no')
